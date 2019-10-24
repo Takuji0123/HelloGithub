@@ -6,7 +6,7 @@ class Tetris {
            this.nextCanvas = document.getElementById("next");
            let cellWidth = this.stageCanvas.width / this.stageWidth;
            let cellHeight = this.stageCanvas.height / this.stageHeight;
-         this.cellSize = cellWidth < cellHeight ? cellWidth : cellHeight;
+          this.cellSize = cellWidth < cellHeight ? cellWidth : cellHeight;
           this.stageLeftPadding = (this.stageCanvas.width - this.cellSize * this.stageWidth) / 2;
           this.stageTopPadding = (this.stageCanvas.height - this.cellSize * this.stageHeight) / 2;
           this.blocks = this.createBlocks();

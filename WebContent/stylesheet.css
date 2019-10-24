@@ -7,9 +7,9 @@ html {
  }
 
  .tetris-container {
-     display: flex;
+    display: flex;
     flex-direction: row;
-     margin: 10px;
+    margin: 10px;
     background-color: #333333;
 }
 
