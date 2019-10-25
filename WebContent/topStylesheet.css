@@ -35,9 +35,7 @@ header {
 }
 
 .main {
-  height: 100px;
-  padding:30px;
-  	text-align:center;
+
 }
 .btn{
   border: 1px solid green;
@@ -90,18 +88,8 @@ header {
 .footer {
   background-color: #2f5167;
   color:#fff;
-  height: 100px;
+  height: 50px;
+  text-align:center;
 }
-
-.contact-form{
-  padding:10px;
-  line-height: 5px;
-  font-size:13px;
-}
-
-.contact-form text{
-  width: 200px;
-}
-
 
 
