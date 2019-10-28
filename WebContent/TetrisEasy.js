@@ -1,4 +1,7 @@
+console.log("ver.1");
+
 class Tetris {
+
        constructor() {
            this.stageWidth = 10;
            this.stageHeight = 20;
@@ -38,10 +41,10 @@ class Tetris {
          }
       }
 
+      //テトリミノ生成
       createBlocks() {
           let blocks = [
               {
-            	  // I型
                  shape: [[[-1, 0], [0, 0], [1, 0], [2, 0]],
                          [[0, -1], [0, 0], [0, 1], [0, 2]],
                          [[-1, 0], [0, 0], [1, 0], [2, 0]],
@@ -51,7 +54,6 @@ class Tetris {
                   shadow: "rgb(0, 128, 128)"
               },
              {
-            	  // O型
                   shape: [[[0, 0], [1, 0], [0, 1], [1, 1]],
                          [[0, 0], [1, 0], [0, 1], [1, 1]],
                          [[0, 0], [1, 0], [0, 1], [1, 1]],
@@ -61,7 +63,6 @@ class Tetris {
                   shadow: "rgb(128, 128, 0)"
               },
              {
-            	// S型
                  shape: [[[0, 0], [1, 0], [-1, 1], [0, 1]],
                          [[-1, -1], [-1, 0], [0, 0], [0, 1]],
                          [[0, 0], [1, 0], [-1, 1], [0, 1]],
@@ -71,7 +72,6 @@ class Tetris {
                   shadow: "rgb(0, 128, 0)"
              },
              {
-            	// Z型
                  shape: [[[-1, 0], [0, 0], [0, 1], [1, 1]],
                         [[0, -1], [-1, 0], [0, 0], [-1, 1]],
                           [[-1, 0], [0, 0], [0, 1], [1, 1]],
@@ -81,7 +81,6 @@ class Tetris {
                shadow: "rgb(128, 0, 0)"
               },
              {
-            	// J型
                   shape: [[[-1, -1], [-1, 0], [0, 0], [1, 0]],
                           [[0, -1], [1, -1], [0, 0], [0, 1]],
                          [[-1, 0], [0, 0], [1, 0], [1, 1]],
@@ -91,7 +90,6 @@ class Tetris {
                  shadow: "rgb(0, 0, 128)"
             },
              {
-            	// L型
                  shape: [[[1, -1], [-1, 0], [0, 0], [1, 0]],
                           [[0, -1], [0, 0], [0, 1], [1, 1]],
                           [[-1, 0], [0, 0], [1, 0], [-1, 1]],
@@ -101,35 +99,14 @@ class Tetris {
                  shadow: "rgb(128, 82, 0)"
              },
              {
-           	  // 変形T型
-                 shape: [[[-1, -1], [0, -1], [1, -1], [0, 0], [0, 1]],
-                        [[1, -1], [-1, 0], [0, 0], [1, 0], [1, 1]],
-                        [[0, -1], [0, 0], [-1, 1], [0, 1], [1, 1]],
-                         [[-1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1]]],
-                   color: "rgb(165, 255, 165)",
-                   highlight: "rgb(255, 255, 255)",
-                   shadow: "rgb(128, 128, 0)"
-             },
-             {
-              	  // 変形U型
-                    shape: [[[-1, -1], [1, -1], [-1, 0], [0, 0], [1, 0]],
-                           [[-1, -1], [0, -1], [-1, 0], [-1, 1], [0, 1]],
-                           [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0]],
-                            [[-1, -1], [0, -1], [0, 0], [-1, 1], [0, 1]]],
-                   color: "rgb(165, 0, 165)",
-                    highlight: "rgb(255, 255, 255)",
-                    shadow: "rgb(128, 128, 0)"
-              },
-              {
-                 // 変形＋型
-                      shape: [[[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
-                             [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
-                             [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
-                              [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]]],
-                    color: "rgb(255, 0, 255)",
-                    highlight: "rgb(255, 255, 255)",
-                    shadow: "rgb(128, 0, 128)"
-                  }
+                 shape: [[[0, -1], [-1, 0], [0, 0], [1, 0]],
+                         [[0, -1], [0, 0], [1, 0], [0, 1]],
+                         [[-1, 0], [0, 0], [1, 0], [0, 1]],
+                         [[0, -1], [-1, 0], [0, 0], [0, 1]]],
+                color: "rgb(255, 0, 255)",
+                 highlight: "rgb(255, 255, 255)",
+                 shadow: "rgb(128, 0, 128)"
+             }
          ];
         return blocks;
      }
@@ -160,7 +137,7 @@ class Tetris {
          context.lineTo(adjustedX + adjustedSize, adjustedY);
          context.stroke();
          context.strokeStyle = block.shadow;
-         context.beginPath();
+        context.beginPath();
          context.moveTo(adjustedX, adjustedY + adjustedSize);
          context.lineTo(adjustedX + adjustedSize, adjustedY + adjustedSize);
          context.lineTo(adjustedX + adjustedSize, adjustedY);
@@ -178,7 +155,7 @@ class Tetris {
          this.mainLoop();
      }
 
-   mainLoop() {
+     mainLoop() {
          if (this.currentBlock == null) {
              if (!this.createNewBlock()) {
                  return;
@@ -192,6 +169,7 @@ class Tetris {
                  this.stageTopPadding + this.blockY * this.cellSize,
                  this.currentBlock, this.blockAngle, this.stageCanvas);
          }
+         //落下速度
          setTimeout(this.mainLoop.bind(this), 500);
      }
 
@@ -202,12 +180,18 @@ class Tetris {
          this.blockY = 0;
          this.blockAngle = 0;
          this.drawNextBlock();
+        //GAME OVERのロジック
         if (!this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, this.blockAngle)) {
              let messageElem = document.getElementById("message");
-             messageElem.innerText = "GAME OVER";
+             messageElem.innerText = "げーむおーばー";
             return false;
          }
          return true;
+
+         if(linesElem > 5){
+        	 let messageElem = document.getElementById("message");
+         	messageElem.innerText = "GAME CLEAR";
+         }
      }
 
      drawNextBlock() {
@@ -217,7 +201,7 @@ class Tetris {
      }
 
      getRandomBlock() {
-         return  Math.floor(Math.random() * 9);
+         return  Math.floor(Math.random() * 7);
      }
 
      fallBlock() {
@@ -272,15 +256,16 @@ class Tetris {
                     this.virtualStage[x][0] = null;
                 }
 
-             //加点
+            //加点
             let linesElem = document.getElementById("lines");
-                this.deletedLines+=3;
+                this.deletedLines++;
                linesElem.innerText = "" + this.deletedLines;
+
              } else {
                  y--;
             }
          }
-     }
+      }
 
      drawStage() {
          this.clear(this.stageCanvas);
@@ -299,7 +284,6 @@ class Tetris {
          }
      }
 
-     //左へ移動
      moveLeft() {
         if (this.checkBlockMove(this.blockX - 1, this.blockY, this.currentBlock, this.blockAngle)) {
              this.blockX--;
@@ -307,7 +291,6 @@ class Tetris {
          }
      }
 
-     //右へ移動
      moveRight() {
          if (this.checkBlockMove(this.blockX + 1, this.blockY, this.currentBlock, this.blockAngle)) {
              this.blockX++;
@@ -315,7 +298,6 @@ class Tetris {
          }
      }
 
-     //回転
      rotate() {
         let newAngle;
          if (this.blockAngle < 3) {

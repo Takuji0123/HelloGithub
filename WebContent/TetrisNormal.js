@@ -38,6 +38,7 @@ class Tetris {
          }
       }
 
+       //テトリミノ生成
       createBlocks() {
           let blocks = [
               {
@@ -109,7 +110,17 @@ class Tetris {
                 color: "rgb(255, 0, 255)",
                  highlight: "rgb(255, 255, 255)",
                  shadow: "rgb(128, 0, 128)"
-             }
+             },
+              {
+                 // 変形＋型
+                      shape: [[[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
+                             [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
+                             [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]],
+                              [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]]],
+                    color: "rgb(255, 0, 255)",
+                    highlight: "rgb(255, 255, 255)",
+                    shadow: "rgb(128, 0, 128)"
+                  }
          ];
         return blocks;
      }
@@ -172,7 +183,8 @@ class Tetris {
                  this.stageTopPadding + this.blockY * this.cellSize,
                  this.currentBlock, this.blockAngle, this.stageCanvas);
          }
-         setTimeout(this.mainLoop.bind(this), 500);
+         //落下速度
+         setTimeout(this.mainLoop.bind(this), 250);
      }
 
     createNewBlock() {
@@ -184,7 +196,7 @@ class Tetris {
          this.drawNextBlock();
         if (!this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, this.blockAngle)) {
              let messageElem = document.getElementById("message");
-             messageElem.innerText = "GAME OVER";
+             messageElem.innerText = "げーむおーばー";
             return false;
          }
          return true;
@@ -197,7 +209,7 @@ class Tetris {
      }
 
      getRandomBlock() {
-         return  Math.floor(Math.random() * 7);
+         return  Math.floor(Math.random() * 8);
      }
 
      fallBlock() {
@@ -255,7 +267,7 @@ class Tetris {
 
             //加点
             let linesElem = document.getElementById("lines");
-                this.deletedLines+=2;
+                this.deletedLines+=5;
                linesElem.innerText = "" + this.deletedLines;
              } else {
                  y--;
