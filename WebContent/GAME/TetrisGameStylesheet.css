@@ -2,6 +2,15 @@ html {
      touch-action: manipulation;
  }
 
+.cat {
+  background-image: url(image/cat.png);
+  background-repeat:repeat;
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  z-index:-1;
+  /* opacity:0.6; */
+}
 span {
   color: #ff80ff;
   font-size:20px;

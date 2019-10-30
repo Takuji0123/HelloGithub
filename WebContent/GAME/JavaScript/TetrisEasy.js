@@ -1,10 +1,13 @@
-console.log("ver.1");
+console.log("ver.1.1");
 
 class Tetris {
 
        constructor() {
+    	   //横幅の変数
            this.stageWidth = 10;
+           //縦幅の変数
            this.stageHeight = 20;
+           //
            this.stageCanvas = document.getElementById("stage");
            this.nextCanvas = document.getElementById("next");
            let cellWidth = this.stageCanvas.width / this.stageWidth;
@@ -15,6 +18,7 @@ class Tetris {
           this.blocks = this.createBlocks();
           this.deletedLines = 0;
 
+          //矢印キー操作のロジック
           window.onkeydown = (e) => {
               if (e.keyCode === 37) {
                   this.moveLeft();
@@ -30,16 +34,16 @@ class Tetris {
           document.getElementById("tetris-move-left-button").onmousedown = (e) => {
              this.moveLeft();
           }
-         document.getElementById("tetris-rotate-button").onmousedown = (e) => {
+          document.getElementById("tetris-rotate-button").onmousedown = (e) => {
               this.rotate();
           }
           document.getElementById("tetris-move-right-button").onmousedown = (e) => {
              this.moveRight();
-         }
-         document.getElementById("tetris-fall-button").onmousedown = (e) => {
+          }
+          document.getElementById("tetris-fall-button").onmousedown = (e) => {
               this.fall();
-         }
-      }
+          }
+       }
 
       //テトリミノ生成
       createBlocks() {
@@ -127,7 +131,7 @@ class Tetris {
          let block = this.blocks[type];
          let adjustedX = cellX + 0.5;
          let adjustedY = cellY + 0.5;
-         let adjustedSize = cellSize - 1;
+         let adjustedSize = cellSize - 2;
          context.fillStyle = block.color;
          context.fillRect(adjustedX, adjustedY, adjustedSize, adjustedSize);
          context.strokeStyle = block.highlight;
@@ -185,13 +189,15 @@ class Tetris {
              let messageElem = document.getElementById("message");
              messageElem.innerText = "げーむおーばー";
             return false;
-         }
+        //Game CLEARのロジック
+         }else if(this.deletedLines >= 100){
+        	 let messageElem = document.getElementById("message");
+          	messageElem.innerText = "GAME CLEAR";
+          	return false;
+          }
          return true;
 
-         if(linesElem > 5){
-        	 let messageElem = document.getElementById("message");
-         	messageElem.innerText = "GAME CLEAR";
-         }
+
      }
 
      drawNextBlock() {
