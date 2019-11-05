@@ -3,7 +3,7 @@ html {
  }
 
 .cat {
-  background-image: url(image/cat.png);
+  background-image: url(TetrisTexture/cat.png);
   background-repeat:repeat;
   position:fixed;
   width: 100%;
