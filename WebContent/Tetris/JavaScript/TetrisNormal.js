@@ -184,7 +184,7 @@ class Tetris {
                  this.currentBlock, this.blockAngle, this.stageCanvas);
          }
          //落下速度
-         setTimeout(this.mainLoop.bind(this), 250);
+         setTimeout(this.mainLoop.bind(this), 300);
      }
 
     createNewBlock() {
